@@ -83,14 +83,14 @@ class InstalledPackageDiscovery
         $composer = $this->readPackageComposer($name);
         $description = $package['description'] ?? $composer['description'] ?? null;
 
-        return new DiscoveredPackage(
-            name: $name,
-            version: $this->normalizeVersion($package['version']),
-            description: is_string($description) ? $description : null,
-            type: $this->resolveType($composer),
-            addonName: ($addonName = Arr::get($composer, 'extra.statamic.name')) && is_string($addonName) ? $addonName : null,
-            isDev: $isDev,
-        );
+        return new DiscoveredPackage([
+            'name' => $name,
+            'version' => $this->normalizeVersion($package['version']),
+            'description' => is_string($description) ? $description : null,
+            'type' => $this->resolveType($composer),
+            'addonName' => ($addonName = Arr::get($composer, 'extra.statamic.name')) && is_string($addonName) ? $addonName : null,
+            'isDev' => $isDev,
+        ]);
     }
 
     /**

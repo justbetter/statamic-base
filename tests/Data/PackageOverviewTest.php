@@ -15,14 +15,14 @@ class PackageOverviewTest extends TestCase
     public function it_serializes_package_and_index_data(): void
     {
         $overview = PackageOverview::fromDiscovered(
-            new DiscoveredPackage(
-                name: 'justbetter/statamic-base',
-                version: '1.0.0',
-                description: 'Foundation addon',
-                type: 'statamic-addon',
-                addonName: 'Statamic Base',
-                isDev: false,
-            ),
+            new DiscoveredPackage([
+                'name' => 'justbetter/statamic-base',
+                'version' => '1.0.0',
+                'description' => 'Foundation addon',
+                'type' => 'statamic-addon',
+                'addonName' => 'Statamic Base',
+                'isDev' => false,
+            ]),
             latestVersion: '1.1.0',
             updateStatus: UpdateStatus::Minor,
         );
@@ -37,11 +37,11 @@ class PackageOverviewTest extends TestCase
             'type' => 'statamic-addon',
         ], $overview->toArray());
 
-        $index = new PackagesIndexData(
-            productionPackages: [$overview],
-            devPackages: [],
-            packagistAvailable: true,
-        );
+        $index = new PackagesIndexData([
+            'productionPackages' => [$overview],
+            'devPackages' => [],
+            'packagistAvailable' => true,
+        ]);
 
         $this->assertSame([
             'productionPackages' => [$overview->toArray()],

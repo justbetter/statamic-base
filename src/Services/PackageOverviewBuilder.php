@@ -32,11 +32,11 @@ class PackageOverviewBuilder
             }
         }
 
-        return new PackagesIndexData(
-            productionPackages: $production,
-            devPackages: $dev,
-            packagistAvailable: $packagistAvailable,
-        );
+        return new PackagesIndexData([
+            'productionPackages' => $production,
+            'devPackages' => $dev,
+            'packagistAvailable' => $packagistAvailable,
+        ]);
     }
 
     protected function buildOverview(DiscoveredPackage $package): PackageOverview

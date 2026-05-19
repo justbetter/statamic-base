@@ -38,11 +38,11 @@ class PackageOverviewBuilderTest extends TestCase
 
         $base = collect($data->productionPackages)->firstWhere('name', 'justbetter/statamic-base');
         $this->assertNotNull($base);
-        $this->assertSame(UpdateStatus::Minor, $base->updateStatus);
+        $this->assertSame(UpdateStatus::Minor->value, $base->updateStatus);
 
         $dev = $data->devPackages[0];
         $this->assertSame('just-better/statamic-dev-tools', $dev->name);
-        $this->assertSame(UpdateStatus::Minor, $dev->updateStatus);
+        $this->assertSame(UpdateStatus::Minor->value, $dev->updateStatus);
     }
 
     #[Test]
@@ -57,7 +57,7 @@ class PackageOverviewBuilderTest extends TestCase
         $data = $this->builder()->build();
 
         $this->assertFalse($data->packagistAvailable);
-        $this->assertSame(UpdateStatus::Unknown, $data->productionPackages[0]->updateStatus);
+        $this->assertSame(UpdateStatus::Unknown->value, $data->productionPackages[0]->updateStatus);
     }
 
     protected function builder(): PackageOverviewBuilder
