@@ -1,0 +1,10 @@
+{
+    "name": "justbetter/statamic-base",
+    "type": "statamic-addon",
+    "description": "Foundation addon",
+    "extra": {
+        "statamic": {
+            "name": "Statamic Base"
+        }
+    }
+}
