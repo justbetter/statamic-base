@@ -1,11 +1,10 @@
 <?php
 
-namespace JustBetter\StatamicBase\Services;
+namespace JustBetter\StatamicBase\Client;
 
 use Composer\Semver\Semver;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Throwable;
 
 class PackagistClient
 {
@@ -32,23 +31,24 @@ class PackagistClient
 
     public function isAvailable(): bool
     {
-        try {
-            $response = Http::timeout(5)->get('https://packagist.org/packages/justbetter/statamic-base.json');
+        return rescue(
+            static function (): bool {
+                Http::timeout(5)
+                    ->get('https://packagist.org/packages/justbetter/statamic-base.json')
+                    ->throw();
 
-            return $response->successful();
-        } catch (Throwable) {
-            return false;
-        }
+                return true;
+            },
+            false,
+        );
     }
 
     protected function fetchLatestStableVersion(string $packageName): ?string
     {
-        try {
-            $response = Http::timeout(5)->get("https://packagist.org/packages/{$packageName}.json");
-
-            if (! $response->successful()) {
-                return null;
-            }
+        return rescue(function () use ($packageName): ?string {
+            $response = Http::timeout(5)
+                ->get("https://packagist.org/packages/{$packageName}.json")
+                ->throw();
 
             /** @var array<string, mixed>|null $versions */
             $versions = $response->json('package.versions');
@@ -70,9 +70,7 @@ class PackagistClient
             $sorted = Semver::rsort($stableVersions);
 
             return $sorted[0] ?? null;
-        } catch (Throwable) {
-            return null;
-        }
+        }, null);
     }
 
     protected function isStable(string $version): bool

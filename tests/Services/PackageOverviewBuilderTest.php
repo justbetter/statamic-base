@@ -4,10 +4,10 @@ namespace JustBetter\StatamicBase\Tests\Services;
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
+use JustBetter\StatamicBase\Client\PackagistClient;
 use JustBetter\StatamicBase\Enums\UpdateStatus;
 use JustBetter\StatamicBase\Services\InstalledPackageDiscovery;
 use JustBetter\StatamicBase\Services\PackageOverviewBuilder;
-use JustBetter\StatamicBase\Services\PackagistClient;
 use JustBetter\StatamicBase\Services\VersionComparator;
 use JustBetter\StatamicBase\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;

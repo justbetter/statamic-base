@@ -3,12 +3,12 @@
 namespace JustBetter\StatamicBase;
 
 use Illuminate\Routing\Router;
+use JustBetter\StatamicBase\Client\PackagistClient;
 use JustBetter\StatamicBase\Http\Middleware\AuthorizePackages;
 use JustBetter\StatamicBase\Navigation\JustBetterNav;
 use JustBetter\StatamicBase\Services\IconFetcher;
 use JustBetter\StatamicBase\Services\InstalledPackageDiscovery;
 use JustBetter\StatamicBase\Services\PackageOverviewBuilder;
-use JustBetter\StatamicBase\Services\PackagistClient;
 use JustBetter\StatamicBase\Services\VersionComparator;
 use Statamic\Auth\Permission;
 use Statamic\CP\Navigation\Nav as Navigation;

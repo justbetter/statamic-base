@@ -1,11 +1,11 @@
 <?php
 
-namespace JustBetter\StatamicBase\Tests\Services;
+namespace JustBetter\StatamicBase\Tests\Client;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use JustBetter\StatamicBase\Services\PackagistClient;
+use JustBetter\StatamicBase\Client\PackagistClient;
 use JustBetter\StatamicBase\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 

@@ -2,6 +2,7 @@
 
 namespace JustBetter\StatamicBase\Services;
 
+use JustBetter\StatamicBase\Client\PackagistClient;
 use JustBetter\StatamicBase\Data\DiscoveredPackage;
 use JustBetter\StatamicBase\Data\PackageOverview;
 use JustBetter\StatamicBase\Data\PackagesIndexData;
