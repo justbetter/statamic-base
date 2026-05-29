@@ -1,0 +1,61 @@
+{
+    "name": "justbetter/statamic-base",
+    "description": "Foundation addon for JustBetter Statamic packages.",
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "composer/semver": "^3.4",
+        "guzzlehttp/guzzle": "^7.0",
+        "laravel/framework": "^12.40|^13.0",
+        "statamic/cms": "^6.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.4",
+        "laravel/pint": "^1.22",
+        "orchestra/testbench": "^10.8|^11.0",
+        "pestphp/pest": "^3.7",
+        "phpstan/phpstan-mockery": "^2.0",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustBetter\\StatamicBase\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JustBetter\\StatamicBase\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Base",
+            "description": "Foundation addon for JustBetter Statamic packages."
+        },
+        "laravel": {
+            "providers": [
+                "JustBetter\\StatamicBase\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan --memory-limit=1G",
+        "style": "pint --test",
+        "style:fix": "pint",
+        "coverage": "XDEBUG_MODE=coverage php vendor/bin/pest --coverage --min=100",
+        "quality": [
+            "@test",
+            "@analyse",
+            "@style"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true,
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

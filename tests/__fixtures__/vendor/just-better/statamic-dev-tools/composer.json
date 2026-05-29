@@ -1,0 +1,9 @@
+{
+    "name": "just-better/statamic-dev-tools",
+    "type": "statamic-addon",
+    "extra": {
+        "statamic": {
+            "name": "Dev Tools"
+        }
+    }
+}

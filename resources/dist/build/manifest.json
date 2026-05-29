@@ -1,0 +1,13 @@
+{
+  "resources/css/justbetter-statamic-base.css": {
+    "file": "assets/justbetter-statamic-base-Clf4ilY4.css",
+    "src": "resources/css/justbetter-statamic-base.css",
+    "isEntry": true
+  },
+  "resources/js/justbetter-statamic-base.js": {
+    "file": "assets/justbetter-statamic-base-CZtGSfRx.js",
+    "name": "justbetter-statamic-base",
+    "src": "resources/js/justbetter-statamic-base.js",
+    "isEntry": true
+  }
+}
