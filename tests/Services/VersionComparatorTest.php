@@ -46,4 +46,11 @@ class VersionComparatorTest extends TestCase
         $this->assertSame(UpdateStatus::Unknown, $this->comparator->compare('dev-main', '2.0.0'));
         $this->assertSame(UpdateStatus::UpToDate, $this->comparator->compare('dev-main', 'dev-main'));
     }
+
+    #[Test]
+    public function it_returns_unknown_for_invalid_versions(): void
+    {
+        $this->assertSame(UpdateStatus::Unknown, $this->comparator->compare('invalid', '2.0.0'));
+        $this->assertSame(UpdateStatus::Unknown, $this->comparator->compare('1.0.0', '1.0.0.0.0'));
+    }
 }
