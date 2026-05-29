@@ -27,6 +27,10 @@ class VersionComparator
         $installedParts = $this->majorMinorPatch($installed);
         $latestParts = $this->majorMinorPatch($latest);
 
+        if ($installedParts === null || $latestParts === null) {
+            return UpdateStatus::Unknown;
+        }
+
         if ($latestParts[0] > $installedParts[0]) {
             return UpdateStatus::Major;
         }
@@ -39,12 +43,21 @@ class VersionComparator
     }
 
     /**
-     * @return array{0: int, 1: int, 2: int}
+     * @return array{0: int, 1: int, 2: int}|null
      */
-    protected function majorMinorPatch(string $version): array
+    protected function majorMinorPatch(string $version): ?array
     {
-        $normalized = $this->versionParser->normalize($version);
+        try {
+            $normalized = $this->versionParser->normalize($version);
+        } catch (\UnexpectedValueException) {
+            return null;
+        }
+
         $parts = explode('.', $normalized);
+
+        if (count($parts) < 3 || ! is_numeric($parts[0]) || ! is_numeric($parts[1]) || ! is_numeric($parts[2])) {
+            return null;
+        }
 
         return [
             (int) $parts[0],

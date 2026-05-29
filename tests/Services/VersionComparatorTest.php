@@ -39,4 +39,11 @@ class VersionComparatorTest extends TestCase
         $this->assertSame(UpdateStatus::Minor, $this->comparator->compare('1.2.3', '1.3.0'));
         $this->assertSame(UpdateStatus::Major, $this->comparator->compare('1.2.3', '2.0.0'));
     }
+
+    #[Test]
+    public function it_returns_unknown_when_update_level_cannot_be_determined(): void
+    {
+        $this->assertSame(UpdateStatus::Unknown, $this->comparator->compare('dev-main', '2.0.0'));
+        $this->assertSame(UpdateStatus::UpToDate, $this->comparator->compare('dev-main', 'dev-main'));
+    }
 }
