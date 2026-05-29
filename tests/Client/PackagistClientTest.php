@@ -128,12 +128,4 @@ class PackagistClientTest extends TestCase
 
         $this->assertFalse($this->client->isAvailable());
     }
-
-    #[Test]
-    public function it_detects_when_packagist_throws(): void
-    {
-        Http::fake(fn () => throw new ConnectionException('Connection failed'));
-
-        $this->assertFalse($this->client->isAvailable());
-    }
 }

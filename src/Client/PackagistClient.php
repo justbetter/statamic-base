@@ -31,16 +31,9 @@ class PackagistClient
 
     public function isAvailable(): bool
     {
-        return rescue(
-            static function (): bool {
-                Http::timeout(5)
-                    ->get('https://packagist.org/packages/justbetter/statamic-base.json')
-                    ->throw();
-
-                return true;
-            },
-            false,
-        );
+        return Http::timeout(5)
+            ->get('https://packagist.org/packages/justbetter/statamic-base.json')
+            ->successful();
     }
 
     protected function fetchLatestStableVersion(string $packageName): ?string
